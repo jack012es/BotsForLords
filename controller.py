@@ -1,6 +1,7 @@
 import time
 from pynput.mouse import Button, Controller as MouseController
 
+
 class Controller:
     def __init__(self):
         self.mouse = MouseController()
@@ -8,6 +9,7 @@ class Controller:
     def move_mouse(self, x, y):
         def set_mouse_position(x, y):
             self.mouse.position = (int(x), int(y))
+
         def smooth_move_mouse(from_x, from_y, to_x, to_y, speed=0.2):
             steps = 40
             sleep_per_step = speed // steps

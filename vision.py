@@ -9,6 +9,8 @@ class Vision:
     def __init__(self):
         self.static_templates = {
             'trigo_subir': 'assets/trigo_subir.png',
+            'barco_carga': 'assets/canuse_barco.png',
+            'intercambio_barco': 'assets/intercambio.png',
             'mejorar': 'assets/mejorar.png',
             'mejorar2': 'assets/mejorar2.png',
             'mejorando': 'assets/mejorando.png',

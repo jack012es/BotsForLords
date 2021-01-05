@@ -58,6 +58,13 @@ class Game:
                     self.log('Saliendo de las ayudas')
                     self.click_salir()
                     self.state = 'wait'
+            elif self.state == 'wait' and self.posible_barco():
+                self.log('Entrando al barco')
+                self.click_barco()
+                self.state = 'enbarco'
+                if self.state == 'enbarco' and self.puede_intercambiar():
+                    self.log('Realizando intercambio')
+
             else:
                 self.log('Esperando para realizar accion')
             time.sleep(1)
@@ -90,13 +97,27 @@ class Game:
         self.controller.move_mouse(x+5, y)
         self.controller.left_mouse_click()
 
+    # Verificar si existe la imagen del barco
+
+    def posible_barco(self):
+        matches = self.vision.find_template('barco_carga')
+        return np.shape(matches)[1] >= 1
+
+    def click_barco(self):
+        matches = self.vision.find_template('barco_carga')
+        x = matches[1][0]
+        y = matches[0][0]
+
+        self.controller.move_mouse(x, y)
+        self.controller.left_mouse_click()
+
     # verificar si el boton ayuda esta disponible y presionar
     def posible_ayuda(self):
         matches = self.vision.find_template('ayudar')
         return np.shape(matches)[1] >= 1
 
     def click_ayuda(self):
-        
+
         matches = self.vision.find_template('ayudar')
         x = matches[1][0]
         y = matches[0][0]
