@@ -63,7 +63,7 @@ class Game:
                 self.click_barco()
                 self.state = 'enbarco'
                 if self.state == 'enbarco' and self.puede_intercambiar():
-                    self.log('Realizando intercambio')
+                    self.log('Realizando intercambio..')
 
             else:
                 self.log('Esperando para realizar accion')
@@ -105,6 +105,19 @@ class Game:
 
     def click_barco(self):
         matches = self.vision.find_template('barco_carga')
+        x = matches[1][0]
+        y = matches[0][0]
+
+        self.controller.move_mouse(x, y)
+        self.controller.left_mouse_click()
+# Verificar si existe la imagen del intercambio
+
+    def posible_barco(self):
+        matches = self.vision.find_template('intercambio_barco')
+        return np.shape(matches)[1] >= 1
+
+    def click_barco(self):
+        matches = self.vision.find_template('intercambio_barco')
         x = matches[1][0]
         y = matches[0][0]
 
