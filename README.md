@@ -7,12 +7,6 @@ cualquier navegador y en el juego directamente en steam, se hace uso de opencv,
 
 What works:
 
-- Launching the character;
-- Skipping Pinata ads;
-- Skipping mission screen;
-- Restarting the round;
-- Using the rocket;
-
 ## Requirements
 
 - Python 3
