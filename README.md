@@ -1,7 +1,7 @@
 # Botsforlords
 
 -Aplicacion para la automatizacion de pulsaciones en el juego Lords Mobile, funciona en
-cualquier navegador y en el juego directamente en steam, se hace uso de opencv,
+cualquier emulador y en el juego directamente en steam.
 
 ## Notes
 
