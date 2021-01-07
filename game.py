@@ -46,6 +46,15 @@ class Game:
                 if self.can_stop():
                     self.state = 'wait'
                     self.log('Deteniendo SPAM comando detectado')
+            elif self.state == 'wait' and self.posible_barco():
+                self.log('Entrando al barco')
+                self.click_barco()
+                self.state = 'inbarco'
+            elif self.state == 'inbarco' and self.puede_intercambiar():
+                self.log('Realizando intercambio')
+                for i in [1, 1, 1, 1, 1, 1]:
+                    self.click_intercambiar()
+                self.state = 'wait'
             elif self.state == 'wait' and self.puede_manitas():
                 self.log('Entrado a ayudas')
                 self.click_manitas()
@@ -54,17 +63,10 @@ class Game:
                 self.log('Ayudar a todos')
                 self.click_ayudartodos()
                 self.state = 'ayudo'
-                if self.state == 'ayudo' and self.puede_salir():
-                    self.log('Saliendo de las ayudas')
-                    self.click_salir()
-                    self.state = 'wait'
-            elif self.state == 'wait' and self.posible_barco():
-                self.log('Entrando al barco')
-                self.click_barco()
-                self.state = 'enbarco'
-                if self.state == 'enbarco' and self.puede_intercambiar():
-                    self.log('Realizando intercambio..')
-
+            if self.state == 'ayudo' and self.puede_salir():
+                self.log('Saliendo de las ayudas')
+                self.click_salir()
+                self.state = 'wait'
             else:
                 self.log('Esperando para realizar accion')
             time.sleep(1)
@@ -110,14 +112,43 @@ class Game:
 
         self.controller.move_mouse(x, y)
         self.controller.left_mouse_click()
-# Verificar si existe la imagen del intercambio
+# verificar food
 
-    def posible_barco(self):
-        matches = self.vision.find_template('intercambio_barco')
+    def can_food(self):
+        matches = self.vision.find_template('food')
         return np.shape(matches)[1] >= 1
 
-    def click_barco(self):
-        matches = self.vision.find_template('intercambio_barco')
+    def click_food(self):
+        matches = self.vision.find_template('food')
+        x = matches[1][0]
+        y = matches[0][0]
+
+        self.controller.move_mouse(x, y)
+        self.controller.left_mouse_click()
+ # verificar stone
+
+    def can_food(self):
+        matches = self.vision.find_template('stone')
+        return np.shape(matches)[1] >= 1
+
+    def click_food(self):
+        matches = self.vision.find_template('stone')
+        x = matches[1][0]
+        y = matches[0][0]
+
+        self.controller.move_mouse(x, y)
+        self.controller.left_mouse_click()
+
+
+# Verificar si existe la imagen del intercambio
+
+
+    def puede_intercambiar(self):
+        matches = self.vision.find_template('interbanco')
+        return np.shape(matches)[1] >= 1
+
+    def click_intercambiar(self):
+        matches = self.vision.find_template('interbanco')
         x = matches[1][0]
         y = matches[0][0]
 

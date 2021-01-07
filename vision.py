@@ -9,8 +9,13 @@ class Vision:
     def __init__(self):
         self.static_templates = {
             'trigo_subir': 'assets/trigo_subir.png',
+            'food': 'assets/recoleccion/food.png',
+            'stone': 'assets/recoleccion/stone.png',
+            'wood': 'assets/recoleccion/wood.png',
+            'ore': 'assets/recoleccion/ore.png',
+            'gold': 'assets/recoleccion/gold.png',
             'barco_carga': 'assets/canuse_barco.png',
-            'intercambio_barco': 'assets/intercambio.png',
+            'interbanco': 'assets/intercambio.png',
             'mejorar': 'assets/mejorar.png',
             'mejorar2': 'assets/mejorar2.png',
             'mejorando': 'assets/mejorando.png',
